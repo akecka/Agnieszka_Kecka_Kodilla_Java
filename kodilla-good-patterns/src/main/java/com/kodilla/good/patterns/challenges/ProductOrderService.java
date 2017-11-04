@@ -16,7 +16,6 @@ public class ProductOrderService {
 
         if (isOrdered) {
             informationService.inform(orderRequest.getShopUser());
-            serviceSale.createOrder(orderRequest.getShopUser());
             return new OrderDto(orderRequest.getShopUser(), true);
         } else {
             return new OrderDto(orderRequest.getShopUser(), false);
