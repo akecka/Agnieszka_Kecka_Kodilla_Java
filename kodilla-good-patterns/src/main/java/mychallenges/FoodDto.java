@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class FoodDto {
 
     public ArrayList<Product> basket;
-    public boolean isOrdered;
+    public boolean process;
 
-    public FoodDto(ArrayList<Product> basket, boolean isOrdered) {
+    public FoodDto(ArrayList<Product> basket, boolean process) {
         this.basket = basket;
-        this.isOrdered = isOrdered;
+        this.process = process;
     }
 
     public ArrayList<Product> getBasket() {
@@ -17,6 +17,6 @@ public class FoodDto {
     }
 
     public boolean isOrdered() {
-        return isOrdered;
+        return process;
     }
 }

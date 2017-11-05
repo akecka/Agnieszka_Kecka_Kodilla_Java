@@ -7,8 +7,9 @@ public class MainFoodOrder {
         FoodRetriever foodRetriever = new FoodRetriever();
         OrderRetriever orderRetriever = new OrderRetriever(62, "Road Harrington 65", SingleOrder.getSingleOrder());
 
-        Food2DoorProcessor food2DoorProcessor = new Food2DoorProcessor(new FoodService(), new EBuy());
-        food2DoorProcessor.process(orderRetriever,foodRetriever);
+        Food2DoorProcessor food2DoorProcessor = new Food2DoorProcessor(new FoodService(), new EBuy(), foodRetriever);
+        food2DoorProcessor.proces(orderRetriever,foodRetriever);
+
 
     }
 
