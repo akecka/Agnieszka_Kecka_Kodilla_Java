@@ -12,9 +12,9 @@ public class Food2DoorProcessor {
         this.producer = producer;
     }
 
-    public FoodDto proces(final OrderRetriever orderRetriever, final FoodRetriever process) {
+    public FoodDto proces(final OrderRetriever orderRetriever, final Producer shop) {
         FoodService foodService = new FoodService();
-        if (process.process(orderRetriever)) {
+        if (shop.process(orderRetriever)) {
             foodOrderInformation.inform(orderRetriever.getOrder());
 
             return new FoodDto(orderRetriever.getOrder(), true);
