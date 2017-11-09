@@ -1,12 +1,11 @@
 package com.kodilla.good.patterns.challenges2;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class Airport {
 
     private final String nameOfAirport;
-    private final Set<Airport> destinations = new HashSet<>();
+    private final ArrayList<Airport> destinations = new ArrayList<>();
 
 
     public Airport(final String nameOfAirport) {
@@ -17,15 +16,11 @@ public class Airport {
         destinations.add(airport);
     }
 
-    public boolean removeDestination(Airport airport) {
-        return destinations.remove(airport);
-    }
-
     public String getNameOfAirport() {
         return nameOfAirport;
     }
 
-    public Set<Airport> getDestinations() {
+    public ArrayList<Airport> getDestinations() {
         return destinations;
     }
 

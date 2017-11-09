@@ -34,22 +34,6 @@ public class FlightFinder {
         System.out.println("Yoy can fly to " + destination.getNameOfAirport() + " directly from: " + res);
     }
 
-//    public boolean IsDirectFlight(Airport origin, Airport destination) {
-//        Boolean isDirect = false;
-//
-//        List<Airport> res = origin.getDestinations().stream()
-//                .filter(airport -> airport.getNameOfAirport() == destination.getNameOfAirport())
-//                .collect(Collectors.toList());
-//
-//        if (res.size() == 1) {
-//
-//            if (res.get(0).getNameOfAirport() == destination.getNameOfAirport()) {
-//                isDirect = true;
-//            }
-//        }
-//        return isDirect;
-//    }
-
     public void findFlightsVia(Airport origin, Airport via) {
         try {
             List<Airport> destinations = origin.getDestinations().stream()
