@@ -11,11 +11,13 @@ public class MainFlight {
 
         FlightFinder flightFinder = new FlightFinder(airports);
 
-        System.out.println(flightFinder.getAirports().size());
-//        Airport origin = flightFinder.getAirport("Okecie");
-//        Airport via = flightRetrieve.getAirport("Charles de Gaulle");
+        Airport origin = flightFinder.getAirport("Okecie");
+        Airport via = flightFinder.getAirport("Charles de Gaulle");
+        Airport wro = flightFinder.getAirport("Wroclaw");
 
-       // System.out.println(flightFinder.findFlightsVia(origin, via));
+        flightFinder.findFlightsVia(origin, via);
+        flightFinder.allFlightFromCity(origin);
+        flightFinder.allFlightsToCity(wro);
 
     }
 }

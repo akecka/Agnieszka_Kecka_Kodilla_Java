@@ -9,8 +9,6 @@ public class FlightRetrieve {
         return airports;
     }
 
-
-
     public void populateFlights() {
 
         Airport airport1 = new Airport("Okecie");
@@ -22,9 +20,12 @@ public class FlightRetrieve {
 
         airport1.addDestination(airport2);
         airport2.addDestination(airport3);
+        airport2.addDestination(airport4);
+        airport2.addDestination(airport5);
         airport3.addDestination(airport4);
         airport4.addDestination(airport5);
         airport5.addDestination(airport6);
+
 
         ArrayList<Airport> listOfFlights = new ArrayList<>();
         listOfFlights.add(airport1);
@@ -34,5 +35,6 @@ public class FlightRetrieve {
         listOfFlights.add(airport5);
         listOfFlights.add(airport6);
 
+        airports = listOfFlights;
     }
 }

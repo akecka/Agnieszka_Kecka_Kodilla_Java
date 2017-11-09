@@ -2,7 +2,6 @@ package com.kodilla.good.patterns.challenges2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class FlightFinder {
@@ -17,53 +16,67 @@ public class FlightFinder {
         this.airports = airports;
     }
 
-    public boolean IsDirectFlight(String destination) {
-        Boolean isDirect = false;
-
-        String res = airports.stream()
-                .filter(airport -> airport.getNameOfAirport() == destination)
-                .map(Airport::getNameOfAirport).toString();
-        if (res == destination) {
-            isDirect = true;
-        }
-
-        return isDirect;
+    public void allFlightFromCity(Airport origin) {
+        String res = origin.getDestinations().stream()
+                .map(airport -> airport.getNameOfAirport())
+                .collect(Collectors.joining(", "));
+        System.out.println("You can fly from " + origin.getNameOfAirport() + " to these destinations directly: " + res);
     }
 
-    public Set<Airport> findFlightsVia(Airport origin, Airport via) {
+    public void allFlightsToCity(Airport destination) {
+        String res = airports.stream()
+                .filter(airport -> airport.getDestinations().contains(destination))
+                .map(airport -> airport.getNameOfAirport())
+                .collect(Collectors.joining(", "));
+        if (res == null) {
+            System.out.println("No flights found to this city!");
+        }
+        System.out.println("Yoy can fly to " + destination.getNameOfAirport() + " directly from: " + res);
+    }
+
+//    public boolean IsDirectFlight(Airport origin, Airport destination) {
+//        Boolean isDirect = false;
+//
+//        List<Airport> res = origin.getDestinations().stream()
+//                .filter(airport -> airport.getNameOfAirport() == destination.getNameOfAirport())
+//                .collect(Collectors.toList());
+//
+//        if (res.size() == 1) {
+//
+//            if (res.get(0).getNameOfAirport() == destination.getNameOfAirport()) {
+//                isDirect = true;
+//            }
+//        }
+//        return isDirect;
+//    }
+
+    public void findFlightsVia(Airport origin, Airport via) {
         try {
-            return origin.getDestinations().stream()
-                    .flatMap(airport -> airport.getDestinations().stream())
+            List<Airport> destinations = origin.getDestinations().stream()
                     .filter(airport -> airport == via)
                     .flatMap(airport -> airport.getDestinations().stream())
                     .filter(airport -> airport != origin)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
+
+            String des = destinations.stream()
+                    .map(airport -> airport.getNameOfAirport())
+                    .collect(Collectors.joining(", "));
+
+            System.out.println("You can fly to these cities: " + des + ", via " + via.getNameOfAirport() + " airport.");
+
         } catch (Exception e) {
-
-            System.out.println("No Flights found for: " + origin + " " + via);
+            System.out.println("No destinations found from: " + origin + " via " + via + "!");
         }
-
-        return null;
     }
 
     public Airport getAirport(String airportName) {
 
-        List<Airport> air =  airports.stream()
+        List<Airport> air = airports.stream()
                 .filter(airport -> airport.getNameOfAirport() == airportName)
                 .collect(Collectors.toList());
-
-        if(air.size() == 1 ){
+        if (air.size() == 1) {
             return air.get(0);
-
-        //        for (int x = 0; x < airports.size(); x++) {
-//            if (airports.get(x).getNameOfAirport() == airportName) {
-//                if(airports.get(x) == null){
-//                    System.out.println("Airport not found :" + airportName);
-//                }
-//                return airports.get(x);
-//
-//            }
-    }
+        }
         return null;
-}
+    }
 }
