@@ -35,22 +35,19 @@ public class FlightFinder {
     }
 
     public void findFlightsVia(Airport origin, Airport via) {
-        try {
-            List<Airport> destinations = origin.getDestinations().stream()
-                    .filter(airport -> airport == via)
-                    .flatMap(airport -> airport.getDestinations().stream())
-                    .filter(airport -> airport != origin)
-                    .collect(Collectors.toList());
 
-            String des = destinations.stream()
-                    .map(airport -> airport.getNameOfAirport())
-                    .collect(Collectors.joining(", "));
+        List<Airport> destinations = origin.getDestinations().stream()
+                .filter(airport -> airport.equals(via))
+                .flatMap(airport -> airport.getDestinations().stream())
+                .filter(airport -> airport != origin)
+                .collect(Collectors.toList());
 
-            System.out.println("You can fly to these cities: " + des + ", via " + via.getNameOfAirport() + " airport.");
+        String des = destinations.stream()
+                .map(airport -> airport.getNameOfAirport())
+                .collect(Collectors.joining(", "));
 
-        } catch (Exception e) {
-            System.out.println("No destinations found from: " + origin + " via " + via + "!");
-        }
+        System.out.println("You can fly to these cities: " + des + ", via " + via.getNameOfAirport() + " airport.");
+
     }
 
     public Airport getAirport(String airportName) {
