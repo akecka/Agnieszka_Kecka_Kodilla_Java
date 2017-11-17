@@ -18,8 +18,6 @@ public class CalculatorTestSuite {
     double subresult = calculator.sub(4.5,7.5);
     double mulresult = calculator.mul(5.5,8.5);
     double divresult = calculator.div(10.5, 12.5);
-    double divresult2 = calculator.div(10.5, 0);
-    double divresult3 = calculator.div(0, 12.5);
     //Then
     Assert.assertEquals(8.0,addresult, 0.01);
     Assert.assertEquals(-3.0,subresult, 0.01);
