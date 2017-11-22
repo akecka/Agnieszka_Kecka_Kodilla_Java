@@ -7,9 +7,9 @@ public class UserTestSuite {
     @Test
     public void testDefaultSharingStrategies() {
         //Given
-        User kate = new User("Kate Honnold");
-        User george = new User("George Hamilton");
-        User alan = new User("Alan Rickman");
+        User kate = new Millenials("Kate Honnold");
+        User george = new YGeneration("George Hamilton");
+        User alan = new ZGeneration("Alan Rickman");
 
         //When
         String kateShouldShare = kate.sharePost();
