@@ -12,7 +12,7 @@ public class BigmacTestSuite {
                 .ingredient("cheese")
                 .roll("with sesame")
                 .sauce("standard")
-                .burgers("1")
+                .burgers(1)
                 .build();
         System.out.println(bigmac);
         //When

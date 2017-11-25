@@ -5,13 +5,13 @@ import java.util.List;
 
 public final class Bigmac {
     private final String roll;
-    private final String burgers;
+    private final int burgers;
     private final String sauce;
     private final List<String> ingredients;
 
     public static class BigmacBuilder {
         private String roll;
-        private String burgers;
+        private int burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
 
@@ -20,7 +20,7 @@ public final class Bigmac {
             return this;
         }
 
-        public BigmacBuilder burgers(String burgers) {
+        public BigmacBuilder burgers(int burgers) {
             this.burgers = burgers;
             return this;
         }
@@ -41,7 +41,7 @@ public final class Bigmac {
 
     }
 
-    public Bigmac(String roll, String burgers, String sauce, List<String> ingredients) {
+    private Bigmac(String roll, int burgers, String sauce, List<String> ingredients) {
         this.roll = roll;
         this.burgers = burgers;
         this.sauce = sauce;
@@ -52,7 +52,7 @@ public final class Bigmac {
         return roll;
     }
 
-    public String getBurgers() {
+    public int getBurgers() {
         return burgers;
     }
 
