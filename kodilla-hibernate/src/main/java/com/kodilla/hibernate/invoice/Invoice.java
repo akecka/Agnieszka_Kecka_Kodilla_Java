@@ -13,14 +13,15 @@ public final class Invoice {
     private String number;
     private List<Item> items = new ArrayList<>();
 
-    public Invoice(){
+    public Invoice() {
 
     }
 
-    public Invoice(String number, List<Item> items) {
+    public Invoice(String number) {
         this.number = number;
-        this.items = items;
+
     }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -32,7 +33,8 @@ public final class Invoice {
     public void setId(int id) {
         this.id = id;
     }
-    @Column(name = "NUMBER")
+
+    @Column(name = "NUMBER", unique = true)
     public String getNumber() {
         return number;
     }
@@ -40,13 +42,13 @@ public final class Invoice {
     public void setNumber(String number) {
         this.number = number;
     }
+
     @OneToMany(
             targetEntity = Item.class,
             mappedBy = "invoice",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-
     public List<Item> getItems() {
         return items;
     }

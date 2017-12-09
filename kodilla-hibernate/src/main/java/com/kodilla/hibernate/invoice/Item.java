@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ITEM")
+@Table(name = "ITEMS")
 public final class Item {
     private int id;
     private BigDecimal price;
@@ -42,12 +42,8 @@ public final class Item {
     public BigDecimal getValue() {
         return value;
     }
-    @OneToMany(
-            targetEntity = Product.class,
-            mappedBy = "item",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT")
     public Product getProduct() {
         return product;
     }
