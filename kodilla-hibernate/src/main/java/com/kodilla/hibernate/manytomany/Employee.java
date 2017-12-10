@@ -8,10 +8,9 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(
                 name = "Employee.retrieveEmployeesWithLastName",
-                query = "FROM EMPLOYEES WHERE LASTNAME = :LASTNAME"
+                query = "FROM Employee WHERE LASTNAME = :LASTNAME"
         )
 })
-
 
 @Entity
 @Table(name = "EMPLOYEES")

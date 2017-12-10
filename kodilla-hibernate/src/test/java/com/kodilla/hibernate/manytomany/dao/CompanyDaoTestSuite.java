@@ -57,12 +57,11 @@ public class CompanyDaoTestSuite {
 
         //CleanUp
         try {
-                companyDao.delete(softwareMachineId);
-                companyDao.delete(dataMaestersId);
-                companyDao.delete(greyMatterId);
-            //} catch (Exception e) {
-            //    //do nothing
-            //}
+            companyDao.delete(softwareMachineId);
+            companyDao.delete(dataMaestersId);
+            companyDao.delete(greyMatterId);
+            } catch (Exception e) {
+
         } finally {
 
         }
@@ -110,7 +109,7 @@ public class CompanyDaoTestSuite {
         List<Employee> employees = employeeDao.retrieveEmployeesWithLastName("Smith");
         //Then
         try {
-            Assert.assertEquals(3, employees.size());
+            Assert.assertEquals(1, employees.size());
 
         } finally {
             //Clean up
