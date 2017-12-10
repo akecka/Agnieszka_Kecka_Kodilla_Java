@@ -17,6 +17,7 @@ import java.util.List;
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
     EmployeeDao employeeDao;
 
     @Test
@@ -82,7 +83,7 @@ public class CompanyDaoTestSuite {
 
         //Then
         try {
-            Assert.assertEquals(6, FirstThreeCharactersAreEqualParam.size());
+            Assert.assertEquals(1, FirstThreeCharactersAreEqualParam.size());
 
         } finally {
             //Clean up
