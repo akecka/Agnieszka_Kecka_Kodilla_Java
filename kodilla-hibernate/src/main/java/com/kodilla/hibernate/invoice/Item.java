@@ -42,12 +42,12 @@ public final class Item {
     public BigDecimal getValue() {
         return value;
     }
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUCT")
     public Product getProduct() {
         return product;
     }
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "INVOICE_NUMBER")
     public Invoice getInvoice() {
         return invoice;

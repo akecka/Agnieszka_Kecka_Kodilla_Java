@@ -5,10 +5,13 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedQuery(
-        name = "Employee.retrieveEmplyeesWithLastName",
-        query = "FROM Employee WHERE lastname = :LASTNAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.retrieveEmployeesWithLastName",
+                query = "FROM EMPLOYEES WHERE LASTNAME = :LASTNAME"
+        )
+})
+
 
 @Entity
 @Table(name = "EMPLOYEES")
@@ -45,10 +48,11 @@ public class Employee {
     public String getLastname() {
         return lastname;
     }
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
-            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID",referencedColumnName = "EMPLOYEE_ID")},
+            joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "COMPANY_ID", referencedColumnName = "COMPANY_ID")}
     )
     public List<Company> getCompanies() {

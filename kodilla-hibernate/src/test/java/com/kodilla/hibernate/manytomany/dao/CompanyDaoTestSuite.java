@@ -10,14 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    EmployeeDao employeeDao;
 
     @Test
-    public void testSaveManyToMany(){
+    public void testSaveManyToMany() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -53,16 +56,68 @@ public class CompanyDaoTestSuite {
         Assert.assertNotEquals(0, greyMatterId);
 
         //CleanUp
-                try {
-                    //    companyDao.delete(softwareMachineId);
-                    //    companyDao.delete(dataMaestersId);
-                    //    companyDao.delete(greyMatterId);
-                    //} catch (Exception e) {
-                    //    //do nothing
-                    //}
-                }
-                finally {
+        try {
+                companyDao.delete(softwareMachineId);
+                companyDao.delete(dataMaestersId);
+                companyDao.delete(greyMatterId);
+            //} catch (Exception e) {
+            //    //do nothing
+            //}
+        } finally {
 
-                }
         }
+    }
+
+    @Test
+    public void testCompaniesNames() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        //When
+        List<Company> FirstThreeCharactersAreEqualParam = companyDao.retrieveCompaniesFirstThreeCharactersAreEqualParam("sof");
+
+        //Then
+        try {
+            Assert.assertEquals(6, FirstThreeCharactersAreEqualParam.size());
+
+        } finally {
+            //Clean up
+            companyDao.delete(softwareMachine.getId());
+            companyDao.delete(dataMaesters.getId());
+            companyDao.delete(greyMatter.getId());
+        }
+
+
+    }
+
+    @Test
+    public void testEmployeesLastName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+
+        //When
+        List<Employee> employees = employeeDao.retrieveEmployeesWithLastName("Smith");
+        //Then
+        try {
+            Assert.assertEquals(3, employees.size());
+
+        } finally {
+            //Clean up
+            employeeDao.delete(johnSmith);
+            employeeDao.deleteAll();
+        }
+
+    }
+
 }

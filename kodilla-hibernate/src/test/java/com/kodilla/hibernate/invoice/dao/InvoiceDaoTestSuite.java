@@ -40,17 +40,21 @@ public class InvoiceDaoTestSuite {
         invoice.getItems().add(item1);
         invoice.getItems().add(item2);
 
+        item1.setInvoice(invoice);
+        item2.setInvoice(invoice);
+
         car.setItems(Arrays.asList(item1));
         bike.setItems(Arrays.asList(item2));
 
         invoiceDao.save(invoice);
 
         //When
-
         int id = invoice.getId();
         Invoice foundInvoice = invoiceDao.findOne(id);
         //Then
-        Assert.assertEquals(invoice, foundInvoice);
+        Assert.assertEquals(id, foundInvoice.getId());
+        Assert.assertEquals(invoice.getNumber(), foundInvoice.getNumber());
+        Assert.assertEquals(invoice.getItems().size(), foundInvoice.getItems().size());
 
         //Clean up
         invoiceDao.delete(id);

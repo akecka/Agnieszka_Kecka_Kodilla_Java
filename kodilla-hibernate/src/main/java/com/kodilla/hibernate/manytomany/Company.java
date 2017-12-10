@@ -5,6 +5,13 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retrieveCompaniesFirstThreeCharactersAreEqualParam",
+        query = "SELECT DISTINCT * FROM COMPANIES" +
+                " WHERE LEFT(company_name, 3) = :COMPANIES_FIRST_THREE_LETERS",
+        resultClass = Company.class
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -28,7 +35,7 @@ public class Company {
     }
 
     @NotNull
-    @Column(name = "COMPANY_NAME")
+    @Column(name = "COMPANY_NAME", unique = true)
     public String getName() {
         return name;
     }
