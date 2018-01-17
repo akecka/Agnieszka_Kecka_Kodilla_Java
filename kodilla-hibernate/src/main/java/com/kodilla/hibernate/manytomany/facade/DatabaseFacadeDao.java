@@ -1,6 +1,7 @@
-package com.kodilla.hibernate.manytomany.dao;
+package com.kodilla.hibernate.manytomany.facade;
 
 import com.kodilla.hibernate.manytomany.Company;
+import com.kodilla.hibernate.manytomany.Employee;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,10 +12,12 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface CompanyDao extends CrudRepository<Company, Integer> {
+public interface DatabaseFacadeDao extends CrudRepository<DatabaseFacade, Integer> {
 
-    @Query(nativeQuery = true)
-    List<Company> retrieveCompaniesFirstThreeCharactersAreEqualParam(@Param("COMPANIES_FIRST_THREE_LETERS") String COMPANIES_FIRST_THREE_LETERS);
+    @Query
+    List<Employee> getLastNameLike (@Param("ARG")String lastname);
 
+    @Query
+    List<Company> getNameLike (@Param("ARG")String name);
 
 }

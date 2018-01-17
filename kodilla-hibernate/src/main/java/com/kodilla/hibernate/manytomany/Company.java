@@ -1,5 +1,7 @@
 package com.kodilla.hibernate.manytomany;
 
+import org.springframework.stereotype.Service;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
                 " WHERE LEFT(company_name, 3) = :COMPANIES_FIRST_THREE_LETERS",
         resultClass = Company.class
 )
-
+@Service
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
