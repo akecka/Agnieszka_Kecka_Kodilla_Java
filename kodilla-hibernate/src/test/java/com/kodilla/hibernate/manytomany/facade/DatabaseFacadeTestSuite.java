@@ -18,10 +18,11 @@ import java.util.List;
 public class DatabaseFacadeTestSuite {
 
     @Autowired
-    private CompanyDao companyDao;
-
+    private DatabaseFacade databaseFacade;
     @Autowired
     private EmployeeDao employeeDao;
+    @Autowired
+    private  CompanyDao companyDao;
 
     @Test
     public void testEmployeeFacade() {
@@ -30,10 +31,10 @@ public class DatabaseFacadeTestSuite {
         employeeDao.save(employee);
 
         //When
-        List<Employee> nameList = employeeDao.getLastname("ent");
+        List<Employee> nameList = databaseFacade.findLastNameLike("entl");
         //Then
         try {
-            Assert.assertEquals(employee, nameList.get(0));
+            Assert.assertEquals(1, nameList.size());
 
         } finally {
             //Clean up
@@ -50,10 +51,10 @@ public class DatabaseFacadeTestSuite {
         companyDao.save(company);
 
         //When
-        List<Company> companies = companyDao.getNameLike("Micr");
+        List<Company> companies = databaseFacade.findNamesLike("Micr");
         //Then
         try {
-            Assert.assertEquals(company, companies.get(0));
+            Assert.assertEquals(1, companies.size());
 
         } finally {
             //Clean up

@@ -13,7 +13,13 @@ import java.util.List;
                 " WHERE LEFT(company_name, 3) = :COMPANIES_FIRST_THREE_LETERS",
         resultClass = Company.class
 )
-@Service
+
+@NamedQuery(
+        name = "Company.retrieveCompanyNameLike",
+        query = "FROM Company WHERE COMPANY_NAME LIKE CONCAT('%', :ARG, '%')"
+)
+
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -41,6 +47,7 @@ public class Company {
     public String getName() {
         return name;
     }
+
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;

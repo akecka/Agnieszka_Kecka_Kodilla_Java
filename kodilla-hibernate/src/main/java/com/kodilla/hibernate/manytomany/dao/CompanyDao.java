@@ -18,5 +18,5 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
     List<Company> retrieveCompaniesFirstThreeCharactersAreEqualParam(@Param("COMPANIES_FIRST_THREE_LETERS") String COMPANIES_FIRST_THREE_LETERS);
 
     @Query
-    List<Company> getNameLike (@Param("ARG")String name);
+    List<Company> retrieveCompanyNameLike(@Param("ARG")String ARG);
 }
