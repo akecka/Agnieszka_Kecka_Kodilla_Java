@@ -23,9 +23,6 @@ public class DatabaseFacadeTestSuite {
     @Autowired
     private EmployeeDao employeeDao;
 
-    @Autowired
-    private DatabaseFacadeDao databaseFacadeDao;
-
     @Test
     public void testEmployeeFacade() {
         //Given
@@ -33,7 +30,7 @@ public class DatabaseFacadeTestSuite {
         employeeDao.save(employee);
 
         //When
-        List<Employee> nameList = databaseFacadeDao.getLastNameLike("ent");
+        List<Employee> nameList = employeeDao.getLastname("ent");
         //Then
         try {
             Assert.assertEquals(employee, nameList.get(0));
@@ -53,7 +50,7 @@ public class DatabaseFacadeTestSuite {
         companyDao.save(company);
 
         //When
-        List<Company> companies = databaseFacadeDao.getNameLike("Micr");
+        List<Company> companies = companyDao.getNameLike("Micr");
         //Then
         try {
             Assert.assertEquals(company, companies.get(0));
