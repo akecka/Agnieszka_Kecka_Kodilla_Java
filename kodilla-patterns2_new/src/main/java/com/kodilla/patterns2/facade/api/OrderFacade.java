@@ -4,12 +4,14 @@ import com.kodilla.patterns2.facade.ShopService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-
-@Service
-public final class OrderFacade {
+@Component
+@EnableAspectJAutoProxy
+public class OrderFacade {
     @Autowired
     private ShopService shopService;
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
@@ -56,8 +58,4 @@ public final class OrderFacade {
             }
         }
     }
-
-
-
-
 }
