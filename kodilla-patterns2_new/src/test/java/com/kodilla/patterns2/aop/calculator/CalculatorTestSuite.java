@@ -39,6 +39,7 @@ public class CalculatorTestSuite {
         //Then
         LOGGER.info("Testing sub method");
         assertEquals(-5, result, 0);
+
     }
     @Test
     public void testMul() {
