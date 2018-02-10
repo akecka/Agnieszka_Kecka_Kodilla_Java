@@ -13,7 +13,7 @@ public class FacebookTestingApp {
         WebElement element;
         Select select;
 
-        driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
+        driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://www.facebook.com/");
         element = driver.findElement(By.xpath("//*[@id='day']"));
         select = new Select(element);
