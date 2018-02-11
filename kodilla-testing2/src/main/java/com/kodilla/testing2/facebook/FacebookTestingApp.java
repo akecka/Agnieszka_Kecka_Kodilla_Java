@@ -8,20 +8,21 @@ import org.openqa.selenium.support.ui.Select;
 
 public class FacebookTestingApp {
 
-    public static void main(String[] args) {
-        WebDriver driver;
-        WebElement element;
-        Select select;
+    private final static String XPATH_DAY = "//*[@id='day']";
+    private final static String XPATH_MONTH = "//*[@id='month']";
+    private final static String XPATH_YEAR = "//*[@id='year']";
 
-        driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
+    public static void main(String[] args) {
+
+        WebDriver driver = WebDriverConfig.getDriver(WebDriverConfig.CHROME);
         driver.get("https://www.facebook.com/");
-        element = driver.findElement(By.xpath("//*[@id='day']"));
-        select = new Select(element);
+        WebElement element = driver.findElement(By.xpath(XPATH_DAY));
+        Select select = new Select(element);
         select.selectByValue("21");
-        element = driver.findElement(By.xpath("//*[@id='month']"));
+        element = driver.findElement(By.xpath(XPATH_MONTH));
         select = new Select(element);
         select.selectByValue("1");
-        element = driver.findElement(By.xpath("//*[@id='year']"));
+        element = driver.findElement(By.xpath(XPATH_YEAR));
         select = new Select(element);
         select.selectByValue("1988");
 
