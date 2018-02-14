@@ -28,7 +28,7 @@ public class CrudAppTestSuite {
 
     @After
     public void cleanUpAfterTest() {
-        driver.close();
+        //driver.close();
     }
 
     private String createCrudAppTestTask() throws InterruptedException {
@@ -57,9 +57,9 @@ public class CrudAppTestSuite {
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed()) ;
 
-        driver.findElements(By.xpath("//form[@class=\"datable_row\"]")).stream()
+        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
                 .filter(anyForm ->
-                        anyForm.findElement(By.xpath(".//p[@class=\"datatable_field_value\"]"))
+                        anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
                                 .getText().equals(taskName))
                 .forEach(theForm -> {
                     WebElement selectElement = theForm.findElement(By.xpath(".//select[1]"));
@@ -67,7 +67,7 @@ public class CrudAppTestSuite {
                     select.selectByIndex(1);
 
                     WebElement buttonCreateCard =
-                            theForm.findElement(By.xpath(".//button[contains@class, \"card-creation\")]"));
+                            theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
                     buttonCreateCard.click();
                 });
         Thread.sleep(5000);
@@ -83,15 +83,17 @@ public class CrudAppTestSuite {
         driverTrello.findElement(By.id("password")).sendKeys("Wspinaczka88");
         driverTrello.findElement(By.id("login")).submit();
 
-        Thread.sleep(2000);
+        driverTrello.switchTo();
+
+        Thread.sleep(3000);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
-        result = driverTrello.findElements(By.xpath("//span")).stream()
+        result = driverTrello.findElements(By.xpath(".//span[contains(@class,\"list-card-title\")]")).stream()
                 .filter(theSpan -> theSpan.getText().contains(taskName))
                 .collect(Collectors.toList())
                 .size() > 0;
