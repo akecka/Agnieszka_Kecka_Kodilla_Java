@@ -9,7 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertTrue;
@@ -85,13 +87,13 @@ public class CrudAppTestSuite {
 
         driverTrello.switchTo();
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         driverTrello.findElements(By.xpath("//a[@class=\"board-tile\"]")).stream()
                 .filter(aHref -> aHref.findElements(By.xpath(".//span[@title=\"Kodilla Application\"]")).size() > 0)
                 .forEach(aHref -> aHref.click());
 
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         result = driverTrello.findElements(By.xpath(".//span[contains(@class,\"list-card-title\")]")).stream()
                 .filter(theSpan -> theSpan.getText().contains(taskName))
