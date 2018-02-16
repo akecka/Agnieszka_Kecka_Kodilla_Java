@@ -130,6 +130,8 @@ public class CrudAppTestSuite {
                 .collect(Collectors.toList())
                 .size() == 0;
 
+        driver.close();
+
         return result;
     }
 
